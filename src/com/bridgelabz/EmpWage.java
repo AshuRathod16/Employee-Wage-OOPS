@@ -1,46 +1,55 @@
 package com.bridgelabz;
 
+import java.util.Random;
+
 public class EmpWage {
+    static final int WAGE_PER_HR = 20;
+    static final int FULL_DAY_HR = 8;
+    static final int PART_TIME_HR = 4;
+    static final int MAX_WORKING_DAYS = 20;
+    static final int MAX_HRS_PER_MONTH = 100;
+    static final int IS_FULL_TIME = 0;
+    static final int IS_PART_TIME = 1;
 
-//Initializing static variables
-        public static final int IS_FULL_TIME = 1;
-        public static final int IS_PART_TIME = 2;
-        public static final int EMP_RATE_PER_HOUR = 20;
-        public static final int WORKING_DAYS = 20;
-        public static final int MAX_WORKING_HOURS = 100;
+    public void employeeWage() {
+        System.out.println("Welcome to Employee Wage Program");
+        Random random = new Random();
+        int dailyEmpWage;
+        int totalWage = 0;
+        int totalWorkingHrs = 0;
+        int totalWorkingDays = 0;
+        int empHours = 0;
 
-        public static void main(String[] args) {
-
-          System.out.println("Welcome to Employee Wage Computation Program");
-
-            //Initializing variables
-            int totalEmpHours = 0;
-            int empHours = 0;
-            int totalWorkingDays = 0;
-            int totalEmpWage = 0;
-
-            /*Checking if the employee is full time working or part time or is absent using switch case*/
-            while (totalEmpHours <= MAX_WORKING_HOURS && totalWorkingDays < WORKING_DAYS)
-                for (int day = 0; day < WORKING_DAYS; day++) {
-                    int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-                    switch (empCheck) {
-                        case IS_FULL_TIME:
-                            empHours = 8;
-                            break;
-                        case IS_PART_TIME:
-                            empHours = 4;
-                            break;
-                        default:
-                            empHours = 0;
-                    }
-                    totalEmpHours += empHours;
-                    //Printing total working days and hours
-                    System.out.println("DAY#:" + totalWorkingDays + "Emp hour:" + empHours);
-                }
-            //Calculating total employee wage and then printing it
-            totalEmpWage += totalEmpHours * EMP_RATE_PER_HOUR;
-            System.out.println("Employees's Total Wage is:" + totalEmpWage);
+        while (totalWorkingHrs < MAX_HRS_PER_MONTH && totalWorkingDays < MAX_WORKING_DAYS) {
+            totalWorkingDays++;
+            double empCheck = (Math.floor(Math.random() * 10) % 3);
+            switch ((int) empCheck) {
+                case IS_FULL_TIME:
+                    System.out.println("Employee present");
+                    empHours = FULL_DAY_HR;
+                    break;
+                case IS_PART_TIME:
+                    System.out.println("Employee present for part time");
+                    empHours = PART_TIME_HR;
+                    break;
+                default:
+                    System.out.println("Employee Absent ");
+                    empHours = 0;
+            }
+            totalWorkingHrs += empHours;
         }
+        totalWage = totalWorkingHrs * WAGE_PER_HR;
+        System.out.println("Total Wage: " + totalWage);
+        System.out.println("total working hours: " + totalWorkingHrs);
+        System.out.println("total working Days: " + totalWorkingDays);
+    }
+
+    public static void main(String[] args) {
+        //Creating object
+        EmpWage empWage = new EmpWage();
+        // calling the method
+        empWage.employeeWage();
+    }
     }
 
 
