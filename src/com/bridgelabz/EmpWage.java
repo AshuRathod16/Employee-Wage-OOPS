@@ -12,8 +12,8 @@ public class EmpWage {
     public static void main(String[] args) {
         System.out.println("Welcome to employee wage using OOPs concept");
         EmpWage empWage = new EmpWage();
-        empWage.computeWage("AMAZON",20,20,100);
-        empWage.computeWage("FLIPCART",10,15,100);
+        empWage.computeWage("Amazon",20,20,100);
+        empWage.computeWage("Flipcart",10,15,100);
     }
 
 
