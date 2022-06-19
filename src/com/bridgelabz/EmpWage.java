@@ -8,16 +8,6 @@ public class EmpWage  {
     private int numOfCompany = 0;
     static ArrayList<CompanyEmpWage>companyEmpWageArray = new ArrayList<CompanyEmpWage>();
 
-    public static void main(String[] args) {
-        EmpWage empWage = new EmpWage();
-        System.out.println("Welcome to EmployeeWage");
-        empWage.addCompanyEmpWage("AMAZON", 20, 20, 100);
-        empWage.addCompanyEmpWage("FLIPKART", 10, 15, 100);
-        empWage.addCompanyEmpWage("MYNTRA", 25, 20,80);
-        empWage.computeEmpWage();
-    }
-
-
     public void addCompanyEmpWage(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHoursPerMonth) {
         CompanyEmpWage companyEmpWage  = new CompanyEmpWage(companyName, empRatePerHr, numOfWorkingDays, maxHoursPerMonth);
         companyEmpWageArray.add(companyEmpWage);
@@ -54,10 +44,18 @@ public class EmpWage  {
             int empWage = empHrs * companyEmpWage.getEmpRatePerHr();
             totalEmpHrs += empHrs;
             totalEmpWage += empWage;
+            System.out.println("Day#" + totalWorkingDays + "Emp Hrs: " + empHrs + "Emp Wage: " + empWage);
         }
         return totalEmpWage;
     }
-
+    public static void main(String[] args) {
+        EmpWage empWage = new EmpWage();
+        System.out.println("Welcome to EmployeeWage");
+        empWage.addCompanyEmpWage("AMAZON", 20, 20, 100);
+        empWage.addCompanyEmpWage("FLIPKART", 10, 15, 100);
+        empWage.addCompanyEmpWage("MYNTRA", 25, 20,80);
+        empWage.computeEmpWage();
+    }
 
 }
 
