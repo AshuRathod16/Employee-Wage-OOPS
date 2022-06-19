@@ -1,34 +1,26 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-
-public class EmpWage implements IEmpWage {
+public class EmpWage {
     public static final int IS_PART_TIME = 1;
     public static final int IS_FULL_TIME = 2;
 
     private int numOfCompany = 0;
-    static ArrayList<CompanyEmpWage>companyEmpWageArray = new ArrayList<CompanyEmpWage>();
+    private CompanyEmpWage[] companyEmpWageArray;
 
-    public static void main(String[] args) {
-        EmpWage empWage = new EmpWage();
-        System.out.println("Welcome to EmployeeWage");
-        empWage.addCompanyEmpWage("AMAZON", 20, 20, 100);
-        empWage.addCompanyEmpWage("FLIPKART", 10, 15, 100);
-        empWage.addCompanyEmpWage("MYNTRA", 25, 20,80);
-        empWage.computeEmpWage();
+    public EmpWage() {
+        companyEmpWageArray = new CompanyEmpWage[2];
     }
 
 
     public void addCompanyEmpWage(String companyName, int empRatePerHr, int numOfWorkingDays, int maxHoursPerMonth) {
-        CompanyEmpWage companyEmpWage  = new CompanyEmpWage(companyName, empRatePerHr, numOfWorkingDays, maxHoursPerMonth);
-        companyEmpWageArray.add(companyEmpWage);
+        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(companyName, empRatePerHr, numOfWorkingDays, maxHoursPerMonth);
+        numOfCompany++;
     }
 
     public void computeEmpWage() {
-        for (int i = 0; i < companyEmpWageArray.size(); i++) {
-            CompanyEmpWage companyEmpWage = companyEmpWageArray.get(i);
-            companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
-            System.out.println(companyEmpWage);
+        for (int i = 0; i < numOfCompany; i++) {
+            companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+            System.out.println(companyEmpWageArray[i]);
         }
     }
 
@@ -59,7 +51,13 @@ public class EmpWage implements IEmpWage {
         return totalEmpWage;
     }
 
-
+    public static void main(String[] args) {
+        EmpWage empWage = new EmpWage();
+        System.out.println("Welcome to EmployeeWage");
+        empWage.addCompanyEmpWage("AMAZON", 20, 20, 100);
+        empWage.addCompanyEmpWage("FLIPKART", 10, 15, 100);
+        empWage.computeEmpWage();
+    }
 }
 
 
